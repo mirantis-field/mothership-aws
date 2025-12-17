@@ -21,7 +21,7 @@ Terraform configuration to deploy a production-ready k0s Kubernetes cluster on A
 
 ## Prerequisites
 
-1. **Terraform** >= 0.14.3
+1. **Terraform** >= 0.14.3 brew tap hashicorp/tap && brew install hashicorp/tap/terraform
 2. **k0sctl** CLI installed  brew install k0sproject/tap/k0sctl
 3. **kubectl** CLI installed  brew install kubectl
 4. **helm** CLI  installed brew install helm
