@@ -1,2 +1,2 @@
-# runai-demo
-Demo setup for run:ai on K0rdent
+# k0rdent AWS
+PoC setup for on K0rdent
