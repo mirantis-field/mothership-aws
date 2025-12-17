@@ -22,9 +22,10 @@ Terraform configuration to deploy a production-ready k0s Kubernetes cluster on A
 ## Prerequisites
 
 1. **Terraform** >= 0.14.3
-2. **k0sctl** CLI installed
-3. **kubectl** CLI installed
-4. **AWS Credentials** - Export your AWS credentials:
+2. **k0sctl** CLI installed  brew install k0sproject/tap/k0sctl
+3. **kubectl** CLI installed  brew install kubectl
+4. **helm** CLI  installed brew install helm
+5. **AWS Credentials** - Export your AWS credentials:
 
 ```bash
 export AWS_ACCESS_KEY_ID="your-access-key-id"
