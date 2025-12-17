@@ -1,0 +1,14 @@
+apiVersion: k0rdent.mirantis.com/v1beta1
+kind: ServiceTemplate
+metadata:
+  name: ingress-nginx-4-13-2
+  namespace: kcm-system
+spec:
+  helm:
+    chartSpec:
+      chart: ingress-nginx
+      interval: 10m0s
+      sourceRef:
+        kind: HelmRepository
+        name: runai-repo
+      version: 4.13.2

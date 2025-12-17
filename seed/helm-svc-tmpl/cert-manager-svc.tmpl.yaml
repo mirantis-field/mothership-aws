@@ -1,0 +1,14 @@
+apiVersion: k0rdent.mirantis.com/v1beta1
+kind: ServiceTemplate
+metadata:
+  name: cert-manager-1-18-2
+  namespace: kcm-system
+spec:
+  helm:
+    chartSpec:
+      chart: cert-manager
+      interval: 10m0s
+      sourceRef:
+        kind: HelmRepository
+        name: catalog-templates
+      version: 1.18.2 #get version from https://catalog.k0rdent.io/latest/apps/cert-manager

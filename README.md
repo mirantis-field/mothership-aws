@@ -1,2 +1,2 @@
-# mothership-aws
-Repo to deploy k0s-cluster in AWS
+# runai-demo
+Demo setup for run:ai on K0rdent

@@ -1,0 +1,14 @@
+apiVersion: k0rdent.mirantis.com/v1beta1
+kind: ServiceTemplate
+metadata:
+  name: prometheus-stack-77-0-0
+  namespace: kcm-system
+spec:
+  helm:
+    chartSpec:
+      chart: kube-prometheus-stack
+      interval: 10m0s
+      sourceRef:
+        kind: HelmRepository
+        name: prometheus-community-repo
+      version: 77.0.0

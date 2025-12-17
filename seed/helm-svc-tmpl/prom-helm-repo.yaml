@@ -1,0 +1,11 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  labels:
+    k0rdent.mirantis.com/managed: 'true'
+  name: prometheus-community-repo
+  namespace: kcm-system
+spec:
+  interval: 10m0s
+  provider: generic
+  url: https://prometheus-community.github.io/helm-charts
