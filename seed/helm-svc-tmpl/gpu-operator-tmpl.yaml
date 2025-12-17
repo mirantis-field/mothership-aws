@@ -1,0 +1,16 @@
+apiVersion: k0rdent.mirantis.com/v1beta1
+kind: ServiceTemplate
+metadata:
+  name: gpu-operator-24-9-2
+  namespace: kcm-system
+spec:
+  helm:
+    chartSpec:
+      chart: gpu-operator
+      interval: 10m0s
+      sourceRef:
+        kind: HelmRepository
+        name: catalog-templates
+      valuesFiles:
+      - values.yaml
+      version: 24.9.2

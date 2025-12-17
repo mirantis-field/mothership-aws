@@ -1,0 +1,75 @@
+apiVersion: k0rdent.mirantis.com/v1beta1
+kind: ClusterDeployment
+metadata:
+  name: vllm-prod-1
+  namespace: kcm-system
+spec:
+  cleanupOnDeletion: true
+  config:
+    publicIP: true
+    clusterLabels:
+      group: vllm-prod-1
+      type: aws
+    controlPlane:
+      amiID: ami-03c1f788292172a4e
+      instanceType: c5.xlarge
+      number: 1
+      rootVolumeSize: 100
+    gpu:
+      amiID: ami-03c1f788292172a4e
+      instanceType: g6.4xlarge
+      number: 1
+      rootVolumeSize: 120
+    k0s:
+      version: v1.33.4+k0s.0
+    region: us-west-2
+    sshKeyName: k0rdent-ps-ds
+    worker:
+      amiID: ami-03c1f788292172a4e
+      instanceType: t3.2xlarge
+      number: 1
+      rootVolumeSize: 100
+    clusterIdentity: 
+      name: "aws-cluster-identity" 
+      kind: "AWSClusterStaticIdentity" 
+  credential: aws-cluster-identity-cred
+  ipamClaim: {}
+  propagateCredentials: true
+  serviceSpec:
+    continueOnError: true
+    priority: 100
+    services:
+      - name: gpu-operator
+        namespace: gpu-operator
+        template: gpu-operator-24-9-2
+        values: |
+          gpu-operator:
+            operator:
+              defaultRuntime: containerd
+            toolkit:
+              env:
+                - name: CONTAINERD_CONFIG
+                  value: /etc/k0s/containerd.d/nvidia.toml
+                - name: CONTAINERD_SOCKET
+                  value: /run/k0s/containerd.sock
+                - name: CONTAINERD_RUNTIME_CLASS
+                  value: nvidia
+      - name: nginx
+        namespace: ingress-nginx
+        template: ingress-nginx-4-13-2
+      - name: vllm-stack
+        namespace: default
+        template: vllm-svc-v1-0-1 
+      - name: chatapp
+        namespace: default
+        template: chatapp-svc-v1-1-0
+      - name: cert-manager
+        namespace: cert-manager
+        template: cert-manager-1-18-2
+        values: |
+          cert-manager:
+            crds:
+              enabled: true
+    stopOnConflict: false
+    syncMode: Continuous
+  template:  aws-worker-gpu-v1-0-1

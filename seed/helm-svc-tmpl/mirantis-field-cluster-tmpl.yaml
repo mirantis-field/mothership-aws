@@ -1,0 +1,14 @@
+apiVersion: k0rdent.mirantis.com/v1beta1
+kind: ClusterTemplate
+metadata:
+  name: aws-worker-gpu-v1-0-1
+  namespace: kcm-system
+spec:
+  helm:
+    chartSpec:
+      chart: aws-worker-gpu
+      interval: 10m0s
+      sourceRef:
+        kind: HelmRepository
+        name: mirantis-field-cluster-templates
+      version: v1.0.1
