@@ -1,6 +1,5 @@
 terraform.tfstate
 terraform.tfstate.backup
-terraform.tfvars
 .terraform/providers
 .terraform.lock.hcl
 aws_private.pem
